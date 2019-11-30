@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import ObjectMapper
+import Alamofire
 
-class ServiceController: NSObject {
-
+class ServiceController {
+    
 }

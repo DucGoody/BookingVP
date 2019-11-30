@@ -9,7 +9,9 @@
 import UIKit
 
 class PopupFilterCell: UITableViewCell {
-
+    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var ivSelected: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

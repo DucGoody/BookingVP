@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ImageCollectionCell: UICollectionViewCell {
-
+    @IBOutlet weak var ivHotel: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
+    func binUIImage(image: UIImage) {
+        ivHotel.image = image
+    }
 }

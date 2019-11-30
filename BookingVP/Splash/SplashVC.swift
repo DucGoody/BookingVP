@@ -8,23 +8,21 @@
 
 import UIKit
 
-class SplashVC: UIViewController {
+class SplashVC: BaseViewController {
+    var timer = Timer()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.isShowNavigationBar = false
+        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as UIViewController
+            self.navigationController?.pushViewController(viewController, animated: false)
+        })
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer.invalidate()
     }
-    */
-
 }
