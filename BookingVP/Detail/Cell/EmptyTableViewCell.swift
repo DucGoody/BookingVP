@@ -13,7 +13,7 @@ class EmptyTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cstHeightViewEmpty.constant = 2
+        cstHeightViewEmpty.constant = 0.5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

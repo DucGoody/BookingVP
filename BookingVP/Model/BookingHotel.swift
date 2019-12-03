@@ -19,8 +19,25 @@ class BookingHotel: Mappable {
     var bookingName: String?
     var bookingPhone: String?
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         mapping(map: map)
+    }
+    
+    init(hotelId: Int, startDate: Date?, endDate: Date?, roomQuantity: Int, roomType: Int, bookingName: String?, bookingPhone: String?) {
+        self.hotelId = hotelId
+        self.startDate = startDate
+        self.endDate = endDate
+        self.roomQuantity = roomQuantity
+        self.roomType = roomType
+        self.bookingName = bookingName
+        self.bookingPhone = bookingPhone
+    }
+    
+    init(startDate: Date?, endDate: Date?, roomQuantity: Int, roomType: Int) {
+        self.roomQuantity = roomQuantity
+        self.startDate = startDate
+        self.endDate = endDate
+        self.roomType = roomType
     }
     
     func mapping(map: Map) {
@@ -33,4 +50,23 @@ class BookingHotel: Mappable {
         bookingName <- map["booking_name"]
         bookingPhone <- map["booking_phone"]
     }
+}
+
+enum RoomTypeEnum: Int {
+    case normal = 0
+    case vip = 1
+    case vvip = 2
+    
+     var name: String {
+       get {
+         switch self {
+           case .normal:
+             return "Thường"
+           case .vip:
+             return "Vip"
+           case .vvip:
+             return "VVip"
+         }
+       }
+     }
 }

@@ -22,8 +22,7 @@ class RoomTypeCell: UITableViewCell {
     @IBOutlet weak var btnNormal: UIButton!
     @IBOutlet weak var tfRoomType: UITextField!
     @IBOutlet weak var btnSelectType: UIButton!
-    var entitySelected: EntityPopup?
-    var onSelect: ((EntityPopup) -> Void)?
+    var onSelect: (() -> Void)?
     let rxBag = DisposeBag()
     
     override func awakeFromNib() {
@@ -39,15 +38,12 @@ class RoomTypeCell: UITableViewCell {
         self.tfRoomType.setIcon(UIImage.init(named: "ic_drop_down") ?? UIImage(), padding: 10)
         
         btnSelectType.rx.tap.subscribe(onNext: { (_) in
-            if let entitySelected = self.entitySelected {
-                self.onSelect?(entitySelected)
-            }
+            self.onSelect?()
         }).disposed(by: rxBag)
     }
     
-    func setDataType(entitySelected: EntityPopup) {
-        self.entitySelected = entitySelected
-        self.tfRoomType.text = entitySelected.name
+    func setDataType(entitySelected: Int) {
+        self.tfRoomType.text = RoomTypeEnum(rawValue: entitySelected)?.name
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

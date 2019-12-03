@@ -12,7 +12,7 @@ import RxSwift
 import RxDataSources
 
 class DetailHotelVC: BaseViewController, UITableViewDelegate {
-    var hotel: Hotel2!
+    var hotel: Hotel!
     
     @IBOutlet weak var btnBooking: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -82,9 +82,6 @@ class DetailHotelVC: BaseViewController, UITableViewDelegate {
                 self.tableView.endUpdates()
             }
             view.ivExpand.isHidden = section == 4
-//            view.onUpdateTableView = {
-//                self.tableView.reloadData()
-//            }
             return view
         }
         return UIView()

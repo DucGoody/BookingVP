@@ -9,14 +9,14 @@
 import UIKit
 import ObjectMapper
 
-class Hotel: Mappable {
+struct Hotel: Mappable {
     
     var hotelId: Int = 0
     var hotelName: String = ""
     var cityId: Int = 0
     var address: String = ""
-    var lat: Double = 0.0
-    var lon: Double = 0.0
+    var lat: Double = 0
+    var lon: Double = 0
     var images: String = ""
     var restaurant: String = ""
     var events: String = ""
@@ -25,23 +25,23 @@ class Hotel: Mappable {
     var email: String = ""
     var hotelDetail: String = ""
     
-    required init?(_ map: Map) {
+    init?(map: Map) {
         mapping(map: map)
     }
     
-    func mapping(map: Map) {
-        hotelId <- map["hotel_id"]
-        hotelName <- map["hotel_name"]
-        cityId <- map["city_id"]
-        address <- map["address"]
-        lat <- map["lat"]
-        lon <- map["longi"]
-        images <- map["images"]
-        restaurant <- map["restaurant"]
-        events <- map["events"]
-        entertainment <- map["entertainment"]
-        phone <- map["phone"]
-        email <- map["email"]
-        hotelDetail <- map["hotel_detail"]
+    mutating func mapping(map: Map) {
+        hotelId <- map["Hotel_id"]
+        hotelName <- map["Hotel_name"]
+        cityId <- map["City_id"]
+        address <- map["Address"]
+        lat <- map["Lat"]
+        lon <- map["Long"]
+        images <- map["Images"]
+        restaurant <- map["Restaurant"]
+        events <- map["Events"]
+        entertainment <- map["Entertainment"]
+        phone <- map["Phone"]
+        email <- map["Email"]
+        hotelDetail <- map["Hotel_detail"]
     }
 }

@@ -9,9 +9,6 @@
 import UIKit
 import Alamofire
 
-//class Extension: NSObject {
-//
-//}
 extension UIColor {
     convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -49,7 +46,29 @@ extension UIViewController {
     }
     
     func isCheckInternet() -> Bool {
-        return NetworkReachabilityManager()!.isReachable
+        if !NetworkReachabilityManager()!.isReachable {
+            self.showToast(message: "Vui lòng kiểm tra kết nối mạng", isSuccess: false)
+            return false
+        }
+        return true
+    }
+    
+    func showToast(message : String, isSuccess: Bool) {
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
+        toastLabel.backgroundColor = isSuccess ? UIColor.green.withAlphaComponent(0.6) : UIColor.red.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = UIFont.systemFont(ofSize: 16)
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 2.0, delay: 0.1, options: .curveEaseOut, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
     }
 }
 

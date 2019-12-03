@@ -15,7 +15,7 @@ class Room: Mappable {
     var roomTypeId: Int = 0
     var roomStatus: Int = 0
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         mapping(map: map)
     }
     
