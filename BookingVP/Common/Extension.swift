@@ -123,24 +123,3 @@ extension UIImage {
         return newImage!
     }
 }
-
-extension UITextField {
-    func setIcon(_ image: UIImage, padding: Int) {
-        let iconWidth = 12;
-        let iconHeight = 12;
-        
-        //Define the imageView
-        let imageView = UIImageView()
-        imageView.image = image
-        let todoX = Int(self.frame.size.width) - padding
-        let todoY = self.frame.size.height/2 - 6
-        imageView.contentMode = .scaleAspectFit
-        
-        imageView.frame = CGRect(x: Int(todoX), y: Int(todoY), width: iconWidth, height: iconHeight)
-        self.rightViewMode = .always
-        self.addSubview(imageView)
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.frame.height))
-        self.rightView = paddingView
-    }
-}

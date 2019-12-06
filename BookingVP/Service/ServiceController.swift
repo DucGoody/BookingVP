@@ -22,8 +22,7 @@ class ServiceController {
         }
         
         Alamofire.request(url2).responseJSON { (response) in
-            switch response.result {
-            case .success:
+            if response.result.isSuccess {
                 guard let data = response.data,
                     let json = try? JSON(data:data).arrayObject,
                     let dataConvert = json as? [[String : Any]]
@@ -34,10 +33,8 @@ class ServiceController {
                 
                 let datas = Mapper<City>().mapArray(JSONArray: dataConvert)
                 completion(datas)
-                break
-            case .failure:
+            } else {
                 completion(nil)
-                break
             }
         }
     }

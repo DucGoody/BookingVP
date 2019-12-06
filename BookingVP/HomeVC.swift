@@ -26,16 +26,6 @@ class HomeVC: BaseViewController {
     var cities: [City] = []
     var itemsPopup: [EntityPopup] = []
     
-    let items = [
-        Hotel2(hotelId: "abc123", name: "Hotel Hạ Long", image: "123"),
-        Hotel2(hotelId: "abc1234", name: "Hotel Hạ Long 2", image: "1234"),
-        Hotel2(hotelId: "abc1235", name: "Hotel Hạ Long 3", image: "1235"),
-        Hotel2(hotelId: "abc1235", name: "Hotel Hạ Long 3", image: "1235"),
-        Hotel2(hotelId: "abc1235", name: "Hotel Hạ Long 3", image: "1235"),
-        Hotel2(hotelId: "abc1235", name: "Hotel Hạ Long 3", image: "1235"),
-        Hotel2(hotelId: "abc1235", name: "Hotel Hạ Long 3", image: "1235")
-    ]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isShowNavigationBar = false
@@ -75,6 +65,9 @@ class HomeVC: BaseViewController {
             self.showLoading(false)
             if let hotels = hotels { // có dữ liệu
                 self.initData(datas: hotels)
+            } else {
+                let datas = [Hotel.init(hotelName: "Vinpearl Resort Nha Trang", address: "Đảo Hòn Tre, Nha Trang, Khánh Hòa Việt Nam")]
+                self.initData(datas: datas)
             }
         }
     }

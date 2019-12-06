@@ -18,49 +18,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B6D7A0DB-1EB1-4C26-9F41-DC8DEE964EC6"
+            uuid = "210A2CFE-E83E-475D-9F5C-2F0C2976EFAF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BookingVP/Cell/HotelCell.swift"
+            filePath = "BookingVP/Splash/SplashVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "binData(hotel:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "loadCities()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "00C7B2A6-660A-404F-8ED4-83F2439E5404"
+            uuid = "CB834358-B2EE-424E-A2BF-2FB40AE3FC92"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BookingVP/Cell/HotelCell.swift"
+            filePath = "BookingVP/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "binData(hotel:)"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "initData(datas:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3472ED1D-0CFE-47EE-A0EA-D3550486FBC5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookingVP/Cell/HotelCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "binData(hotel:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CB834358-B2EE-424E-A2BF-2FB40AE3FC92 - a3c20db222c40350"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Booking_Vinpearl.HomeVC.initData(datas: Swift.Array&lt;Booking_Vinpearl.Hotel&gt;) -&gt; ()"
+                  moduleName = "Booking Vinpearl"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/TechMaster/BookingVP/BookingVP/HomeVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "253">
+               </Location>
+               <Location
+                  uuid = "CB834358-B2EE-424E-A2BF-2FB40AE3FC92 - 2b58fa4ace27a9f6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int, Booking_Vinpearl.Hotel, Booking_Vinpearl.HotelCell) -&gt; () in Booking_Vinpearl.HomeVC.initData(datas: Swift.Array&lt;Booking_Vinpearl.Hotel&gt;) -&gt; ()"
+                  moduleName = "Booking Vinpearl"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/TechMaster/BookingVP/BookingVP/HomeVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

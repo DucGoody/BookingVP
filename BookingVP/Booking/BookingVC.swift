@@ -16,20 +16,12 @@ class BookingVC: BaseViewController {
     @IBOutlet weak var btnSendRequire: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    let listCell: [String] = ["EnterInfoCell","EnterInfoCell","EnterInfoCell","SelectTimeCell","RoomTypeCell","TotalPriceCell"]
+    var listCell: [String] = []
     var booking: BookingHotel!
     var dateDefault: Date!
     
-    var listIndexCell: [TypeCell] = [.enterInfoCell,.enterInfoCell,.enterInfoCell,.dateCell,.roomTypeCell,.totalPriceCell]
-    var dataSource = RxTableViewSectionedReloadDataSource<EntitySectionBooking>(
-        configureCell: { (_,_,_,_) in
-            fatalError()
-    })
-    let itemsPopup = [
-        EntityPopup.init(tag: 0, name: "Thường"),
-        EntityPopup.init(tag: 1, name: "VIP"),
-        EntityPopup.init(tag: 2, name: "VVIP")
-    ]
+    var listIndexCell: [TypeCell] = []
+    var itemsPopup: [EntityPopup] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +34,14 @@ class BookingVC: BaseViewController {
         self.isShowNavigationBar = true
         self.navigationItem.title = "Đặt phòng"
         
+        listIndexCell = [.enterInfoCell,.enterInfoCell,.enterInfoCell,.dateCell,.roomTypeCell,.totalPriceCell]
+        listCell = ["EnterInfoCell","EnterInfoCell","EnterInfoCell","SelectTimeCell","RoomTypeCell","TotalPriceCell"]
+        itemsPopup = [
+            EntityPopup.init(tag: 0, name: "Thường"),
+            EntityPopup.init(tag: 1, name: "VIP"),
+            EntityPopup.init(tag: 2, name: "VVIP")
+        ]
+        
         self.btnSendRequire.layer.cornerRadius = 8
         self.btnSendRequire.rx.tap.subscribe(onNext: { (_) in
             
@@ -49,55 +49,25 @@ class BookingVC: BaseViewController {
         self.initTableView()
     }
     
+    // inittableView
     func initTableView() {
         self.tableView.separatorColor = UIColor.clear
         for item in listCell {
             self.tableView.register(UINib.init(nibName: item, bundle: nil), forCellReuseIdentifier: item)
         }
         
-        self.dataSource = RxTableViewSectionedReloadDataSource<EntitySectionBooking>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
+        //datasource
+        let dataSource = RxTableViewSectionedReloadDataSource<EntitySectionBooking>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
             
             if indexPath.row == 4 {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: self.listCell[indexPath.row]) as? RoomTypeCell {
-                    cell.setDataType(entitySelected: self.booking.roomType)
-                    cell.onSelect = {
-                        self.onSelectPopup()
-                    }
-                    return cell
-                }
+                return self.getRoomTypeCell(row: indexPath.row)
             } else if indexPath.row == 3 {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: self.listCell[indexPath.row]) as? SelectTimeCell {
-                    cell.binData(startTime: self.booking.startDate ?? self.dateDefault, endTime: self.booking.endDate ?? self.dateDefault)
-                    cell.onSelectTime = { [unowned self] value in
-                        self.onSelectTime(value)
-                    }
-                    return cell
-                }
+                return self.getSelectTimeCell(row: indexPath.row)
             } else if indexPath.row == 5 {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: self.listCell[indexPath.row]) as? TotalPriceCell {
-                    return cell
-                }
+                return self.getTotalPriceCell(row: indexPath.row)
             } else {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: self.listCell[indexPath.row]) as? EnterInfoCell {
-                    cell.setUIByIndex(row: indexPath.row)
-                    cell.onReturnTextField = { [unowned self] row in
-                        self.onShouldReturn(row: row)
-                    }
-                    
-                    cell.onChangeTextField = { [unowned self] string, row in
-                        self.onChangeTextField(text: string,row: row)
-                    }
-                    if indexPath.row == 0 {
-                        cell.tfInput.text = self.booking.bookingName
-                    } else if indexPath.row == 1 {
-                        cell.tfInput.text = self.booking.bookingPhone
-                    } else if indexPath.row == 2 {
-                        cell.tfInput.text = "\(self.booking.roomQuantity)"
-                    }
-                    return cell
-                }
+                return self.getEnterInfoCell(row: indexPath.row)
             }
-            return UITableViewCell()
         })
         
         let sections = [EntitySectionBooking.init(items: [EntityItemSectionBooking.init(typeCell: .enterInfoCell),EntityItemSectionBooking.init(typeCell: .enterInfoCell),EntityItemSectionBooking.init(typeCell: .dateCell), EntityItemSectionBooking.init(typeCell: .roomTypeCell), EntityItemSectionBooking.init(typeCell: .countRoomCell), EntityItemSectionBooking.init(typeCell: .totalPriceCell)])]
@@ -105,6 +75,61 @@ class BookingVC: BaseViewController {
         Observable.just(sections)
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disponseBag)
+    }
+    
+    //get cell loại phòng
+    func getRoomTypeCell(row: Int) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: self.listCell[row]) as? RoomTypeCell {
+            cell.setDataType(entitySelected: self.booking.roomType)
+            cell.onSelect = {
+                self.onSelectPopup()
+            }
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    //get cell thời gian
+    func getSelectTimeCell(row: Int) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: self.listCell[row]) as? SelectTimeCell {
+            cell.binData(startTime: self.booking.startDate ?? self.dateDefault, endTime: self.booking.endDate ?? self.dateDefault)
+            cell.onSelectTime = { [unowned self] value in
+                self.onSelectTime(value)
+            }
+            return cell
+        }
+         return UITableViewCell()
+    }
+    
+    // get cell tổng tiền
+    func getTotalPriceCell(row: Int) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: self.listCell[row]) as? TotalPriceCell {
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    //get cell nhập thông tin
+    func getEnterInfoCell(row: Int) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: self.listCell[row]) as? EnterInfoCell {
+            cell.setUIByIndex(row: row)
+            cell.onReturnTextField = { [unowned self] row in
+                self.onShouldReturn(row: row)
+            }
+            
+            cell.onChangeTextField = { [unowned self] string, row in
+                self.onChangeTextField(text: string,row: row)
+            }
+            if row == 0 {
+                cell.tfInput.text = self.booking.bookingName
+            } else if row == 1 {
+                cell.tfInput.text = self.booking.bookingPhone
+            } else if row == 2 {
+                cell.tfInput.text = "\(self.booking.roomQuantity)"
+            }
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func onShouldReturn(row: Int) {

@@ -29,6 +29,11 @@ struct Hotel: Mappable {
         mapping(map: map)
     }
     
+    init(hotelName: String, address: String) {
+        self.hotelName = hotelName
+        self.address = address
+    }
+    
     mutating func mapping(map: Map) {
         hotelId <- map["Hotel_id"]
         hotelName <- map["Hotel_name"]

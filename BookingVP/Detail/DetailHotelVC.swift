@@ -26,15 +26,10 @@ class DetailHotelVC: BaseViewController, UITableViewDelegate {
     let descriptionHotelCell = "DescriptionHotelCell"
     let nameCell = "NameCell"
     var isResumeTimer: Bool = false
-    
     var timer: Timer!
+    var dataSource: RxTableViewSectionedReloadDataSource<SectionTableViewCell>!
     
-    var dataSource = RxTableViewSectionedReloadDataSource<SectionTableViewCell>(
-        configureCell: { (_,_,_,_) in
-            fatalError()
-    })
-    
-    
+    //fech data
     let sections = [
         SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "", isCollapse: false), items: [EntityTableViewCell.init(name: "", description: ""), EntityTableViewCell.init(name: "", description: "Tọa lạc tại vị trí đắc địa ngay trong khuôn viên Vinhomes Imperia, Vinpearl Hotel Rivera Hải Phòng là tòa khách sạn 5 sao mang dáng vẻ thanh lịch và sang trọng. Hơi thở trữ tình và cổ điển của những công trình phong cách Pháp trên đất Cảng giao hòa với vẻ đẹp thời đại năng động và ấn tượng, được cảm nhận rõ nét qua lối kiến trúc tân cổ điển tinh mỹ.")]),
     SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Nhà hàng & Bar", isCollapse: true), items: [EntityTableViewCell.init(name: "", description: "Với bàn tay chế biến của những đầu bếp tài hoa và sự phục vụ chuyên nghiệp của đội ngũ nhân viên, du khách không chỉ được thưởng thức tinh hoa ẩm thực Việt Nam và quốc tế được bài trí đặc sắc mà còn được dịp ấn tượng bởi dịch vụ tận tâm và không gian sang trọng.")]),
@@ -72,7 +67,7 @@ class DetailHotelVC: BaseViewController, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerDetailView) as? HeaderDetailView, section > 0 {
-            view.lbTitleHeader.text = dataSource[section].header.headerName
+            view.lbTitleHeader.text = dataSource?[section].header.headerName
             view.onCollapse = { [unowned self] value in
                 self.dataSource[section].header.isCollapse = !self.dataSource[section].header.isCollapse
                 view.expandOrCollapse(self.dataSource[section].header.isCollapse)
@@ -144,11 +139,10 @@ class DetailHotelVC: BaseViewController, UITableViewDelegate {
             } else {
                 return self.getDescriptionHotelCell(indexPath: indexPath, item: item, tableView: tableView)
             }
-//             return UITableViewCell()
         })
         
         Observable.just(sections)
-        .bind(to: tableView.rx.items(dataSource: dataSource))
+            .bind(to: tableView.rx.items(dataSource: dataSource))
         .disposed(by: disponseBag)
     }
     
@@ -215,17 +209,6 @@ class DetailHotelVC: BaseViewController, UITableViewDelegate {
     }
     
     func updateCollectionView(listImage: [UIImage]) {
-        //cách 1
-        //        Observable
-        //        .just(listImage)
-        //            .bind(to: collectionView.rx.items(cellIdentifier: "ImageCollectionCell")) { row, item, cell in
-        //                let indexPath = IndexPath(item: row, section: 0)
-        //                if let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: self.imageCollectionCell, for: indexPath) as? ImageCollectionCell {
-        //                     cell.binUIImage(image: item)
-        //                }
-        //
-        //        }.disposed(by: disponseBag)
-        //cách 2
         let dataSource : PublishSubject<[UIImage]> = PublishSubject.init()
         dataSource.asObservable().bind(to: self.collectionView.rx.items) { (collectionView, row, element ) in
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.imageCollectionCell, for: IndexPath(row : row, section : 0)) as? ImageCollectionCell {
