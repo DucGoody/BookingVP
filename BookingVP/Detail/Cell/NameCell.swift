@@ -20,6 +20,11 @@ class NameCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+    }
+    
+    func binData(hotel: Hotel) {
+        self.lbHotelName.text = hotel.hotelName
+        self.lbAdress.text = hotel.address
+        self.lbKm.text = "24 Km"
     }
 }

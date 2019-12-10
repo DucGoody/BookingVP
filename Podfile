@@ -26,5 +26,6 @@ target 'BookingVP' do
 	pod "RxMKMapView"
 	pod 'JTCalendar'
 	pod 'JTAppleCalendar'
+	pod 'Kingfisher'
 
 end

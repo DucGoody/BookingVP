@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Kingfisher
 
 extension UIColor {
     convenience init(hexString: String) {
@@ -54,8 +55,8 @@ extension UIViewController {
     }
     
     func showToast(message : String, isSuccess: Bool) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
-        toastLabel.backgroundColor = isSuccess ? UIColor.green.withAlphaComponent(0.6) : UIColor.red.withAlphaComponent(0.6)
+        let toastLabel = UILabel(frame: CGRect(x: 16, y: 44 + self.view.safeAreaInsets.top, width: self.view.frame.size.width - 32, height: 35))
+        toastLabel.backgroundColor = isSuccess ? UIColor.green : UIColor.red
         toastLabel.textColor = UIColor.white
         toastLabel.font = UIFont.systemFont(ofSize: 16)
         toastLabel.textAlignment = .center;
@@ -64,7 +65,7 @@ extension UIViewController {
         toastLabel.layer.cornerRadius = 10;
         toastLabel.clipsToBounds  =  true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 2.0, delay: 0.1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1.5, delay: 1, options: .curveEaseOut, animations: {
              toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
@@ -121,5 +122,16 @@ extension UIImage {
         UIGraphicsEndImageContext()
 
         return newImage!
+    }
+}
+
+extension UIImageView {
+    
+    func setImage(_ urlString: String) {
+        if let url = URL(string: urlString){
+            let placeholder = UIImage(named: "ic_hotel_default")
+            self.kf.indicatorType = .activity
+            self.kf.setImage(with: url,placeholder: placeholder)
+        }
     }
 }

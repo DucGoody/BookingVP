@@ -21,7 +21,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initIndicator()
-        self.showLoading(false)
+        self.showLoadingView(false)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "ic_back")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(onBack))
     }
     
@@ -39,7 +39,7 @@ class BaseViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
-    func showLoading(_ isShow: Bool) {
+    func showLoadingView(_ isShow: Bool) {
         self.viewDidicator.isHidden = !isShow
     }
     

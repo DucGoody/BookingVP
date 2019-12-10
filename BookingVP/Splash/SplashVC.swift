@@ -18,9 +18,11 @@ class SplashVC: BaseViewController {
     }
     
     func loadCities() {
-        if !self.isCheckInternet() {}
+        if !self.isCheckInternet() {
+            return
+        }
         
-        ServiceController().getAllCities { (cities) in
+        ServiceController().getCities { (cities) in
             self.gotoHomeVC(cities: cities)
         }
     }

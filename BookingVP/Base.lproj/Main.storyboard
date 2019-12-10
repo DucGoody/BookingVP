@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iJC-sY-k7V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iJC-sY-k7V">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--HomeVC-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="HomeVC" id="BYZ-38-t0r" customClass="HomeVC" customModule="Booking_Vinpearl" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="BYZ-38-t0r" customClass="HomeViewController" customModule="Booking_Vinpearl" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,13 +25,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="as0-0M-2mL">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_notification" translatesAutoresizingMaskIntoConstraints="NO" id="jir-nJ-nxU">
-                                        <rect key="frame" x="378" y="10" width="24" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="24" id="DHA-ez-ihB"/>
-                                            <constraint firstAttribute="height" constant="24" id="u3y-5I-nnB"/>
-                                        </constraints>
-                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7g9-ga-zOp">
                                         <rect key="frame" x="0.0" y="43.5" width="414" height="0.5"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -45,18 +38,44 @@
                                             <constraint firstAttribute="width" secondItem="t01-IG-1Ga" secondAttribute="height" multiplier="2:1" id="wPA-1z-ufe"/>
                                         </constraints>
                                     </imageView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2X-Db-yXI">
+                                        <rect key="frame" x="8" y="0.0" width="44" height="43.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="AsE-sM-8bQ"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="10" minY="12" maxX="10" maxY="8"/>
+                                        <state key="normal" image="ic_user"/>
+                                        <connections>
+                                            <action selector="actionShowInfoUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GV5-z0-qHx"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mA-t2-KYV">
+                                        <rect key="frame" x="362" y="0.0" width="44" height="43.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="xp7-pg-8VP"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="ic_notification"/>
+                                        <connections>
+                                            <action selector="actionGotoNotifications:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jsV-9v-cvC"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="jir-nJ-nxU" firstAttribute="centerY" secondItem="as0-0M-2mL" secondAttribute="centerY" id="3Rz-kB-zr0"/>
                                     <constraint firstItem="t01-IG-1Ga" firstAttribute="top" secondItem="as0-0M-2mL" secondAttribute="top" constant="3" id="3VU-YU-WXu"/>
+                                    <constraint firstItem="7g9-ga-zOp" firstAttribute="top" secondItem="0mA-t2-KYV" secondAttribute="bottom" id="47t-qr-TCy"/>
+                                    <constraint firstItem="0mA-t2-KYV" firstAttribute="top" secondItem="as0-0M-2mL" secondAttribute="top" id="Erk-1P-mqg"/>
+                                    <constraint firstItem="E2X-Db-yXI" firstAttribute="leading" secondItem="as0-0M-2mL" secondAttribute="leading" constant="8" id="Qgk-XA-FeX"/>
                                     <constraint firstAttribute="height" constant="44" id="RLa-yZ-IyY"/>
                                     <constraint firstAttribute="bottom" secondItem="t01-IG-1Ga" secondAttribute="bottom" constant="3" id="TMA-f0-eZP"/>
                                     <constraint firstAttribute="trailing" secondItem="7g9-ga-zOp" secondAttribute="trailing" id="fD8-Si-WtG"/>
                                     <constraint firstItem="7g9-ga-zOp" firstAttribute="leading" secondItem="as0-0M-2mL" secondAttribute="leading" id="iKJ-Fd-GRQ"/>
                                     <constraint firstItem="t01-IG-1Ga" firstAttribute="centerX" secondItem="as0-0M-2mL" secondAttribute="centerX" id="oJY-Ty-lgl"/>
-                                    <constraint firstAttribute="trailing" secondItem="jir-nJ-nxU" secondAttribute="trailing" constant="12" id="sao-it-pRQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="0mA-t2-KYV" secondAttribute="trailing" constant="8" id="tAI-3j-hur"/>
+                                    <constraint firstItem="E2X-Db-yXI" firstAttribute="top" secondItem="as0-0M-2mL" secondAttribute="top" id="vtZ-Mm-9ZZ"/>
                                     <constraint firstAttribute="bottom" secondItem="7g9-ga-zOp" secondAttribute="bottom" id="wgi-U4-EPy"/>
+                                    <constraint firstItem="7g9-ga-zOp" firstAttribute="top" secondItem="E2X-Db-yXI" secondAttribute="bottom" id="ypF-b7-ba1"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vy2-1i-KnL">
@@ -78,7 +97,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dR-GN-HWb">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="36"/>
                                         <connections>
-                                            <action selector="actionFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7FL-Bs-u3s"/>
+                                            <action selector="actionShowPopupFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="58d-MQ-shy"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -119,21 +138,20 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="cstHeightViewSafeArea" destination="Slu-mS-9nJ" id="DTO-Ic-Ftb"/>
-                        <outlet property="ivNoti" destination="jir-nJ-nxU" id="oTW-9k-xeT"/>
-                        <outlet property="lbAddress" destination="R4b-t8-lSx" id="0fE-P9-45n"/>
-                        <outlet property="tableView" destination="wxV-65-RJX" id="TXv-TH-Os2"/>
-                        <outlet property="vAddress" destination="Vy2-1i-KnL" id="yt2-RZ-efO"/>
+                        <outlet property="cityLabel" destination="R4b-t8-lSx" id="FVP-9E-jzX"/>
+                        <outlet property="cityView" destination="Vy2-1i-KnL" id="oV9-Rb-hrO"/>
+                        <outlet property="heightStatusViewConstraint" destination="Slu-mS-9nJ" id="9UV-eF-NLk"/>
+                        <outlet property="tableView" destination="wxV-65-RJX" id="ciV-Ar-KkD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="126.5625"/>
         </scene>
-        <!--SplashVC-->
+        <!--Splash View Controller-->
         <scene sceneID="MPf-qO-ZRX">
             <objects>
-                <viewController id="YGs-96-QEP" customClass="SplashVC" customModule="Booking_Vinpearl" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YGs-96-QEP" customClass="SplashViewController" customModule="Booking_Vinpearl" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ODq-Km-sSD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -181,6 +199,7 @@
     <resources>
         <image name="ic_drop_down" width="16" height="16"/>
         <image name="ic_notification" width="32" height="32"/>
+        <image name="ic_user" width="32" height="32"/>
         <image name="ic_vinpearl" width="647" height="366"/>
     </resources>
 </document>

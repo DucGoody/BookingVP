@@ -12,28 +12,18 @@ import ObjectMapper
 class BookingHotel: Mappable {
     var bookingId: Int = 0
     var hotelId: Int = 0
-    var startDate: Date?
-    var endDate: Date?
+    var startDate: Date = Date()
+    var endDate: Date = Date()
     var roomQuantity: Int = 0
     var roomType: Int = 0
-    var bookingName: String?
-    var bookingPhone: String?
+    var bookingName: String = ""
+    var bookingPhone: String = ""
     
     required init?(map: Map) {
         mapping(map: map)
     }
     
-    init(hotelId: Int, startDate: Date?, endDate: Date?, roomQuantity: Int, roomType: Int, bookingName: String?, bookingPhone: String?) {
-        self.hotelId = hotelId
-        self.startDate = startDate
-        self.endDate = endDate
-        self.roomQuantity = roomQuantity
-        self.roomType = roomType
-        self.bookingName = bookingName
-        self.bookingPhone = bookingPhone
-    }
-    
-    init(startDate: Date?, endDate: Date?, roomQuantity: Int, roomType: Int) {
+    init(startDate: Date, endDate: Date, roomQuantity: Int, roomType: Int) {
         self.roomQuantity = roomQuantity
         self.startDate = startDate
         self.endDate = endDate
@@ -41,27 +31,27 @@ class BookingHotel: Mappable {
     }
     
     func mapping(map: Map) {
-        bookingId <- map["booking_id"]
-        hotelId <- map["hotel_id"]
-        startDate <- (map["startdate"], DateTransform())
-        endDate <- (map["enddate"],DateTransform())
-        roomQuantity <- map["room_quantity"]
-        roomType <- map["room_type"]
-        bookingName <- map["booking_name"]
-        bookingPhone <- map["booking_phone"]
+        bookingId <- map["Bookingid"]
+        hotelId <- map["Hotelid"]
+        startDate <- (map["Startdate"], DateTransform())
+        endDate <- (map["Enddate"],DateTransform())
+        roomQuantity <- map["Roomquantity"]
+        roomType <- map["Roomtype"]
+        bookingName <- map["Bookingname"]
+        bookingPhone <- map["Bookingphone"]
     }
 }
 
 enum RoomTypeEnum: Int {
-    case normal = 0
-    case vip = 1
-    case vvip = 2
+    case vip = 0
+    case vvip = 1
+    case deluxevip = 2
     
      var name: String {
        get {
          switch self {
-           case .normal:
-             return "Thường"
+           case .deluxevip:
+             return "Deluxe Vip"
            case .vip:
              return "Vip"
            case .vvip:

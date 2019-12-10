@@ -18,65 +18,81 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "210A2CFE-E83E-475D-9F5C-2F0C2976EFAF"
+            uuid = "64AE58DB-E572-4ABA-9F7B-031B7B93A494"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BookingVP/Splash/SplashVC.swift"
+            filePath = "BookingVP/Booking/BookingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "loadCities()"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "bookingHotel()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CB834358-B2EE-424E-A2BF-2FB40AE3FC92"
+            uuid = "721A8E0B-AF33-4E77-9C4C-FB10C8777D61"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BookingVP/HomeVC.swift"
+            filePath = "BookingVP/Service/ServiceController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "initData(datas:)"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "booking(bookingInfo:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "CB834358-B2EE-424E-A2BF-2FB40AE3FC92 - a3c20db222c40350"
+                  uuid = "721A8E0B-AF33-4E77-9C4C-FB10C8777D61 - 2ada162e83b7c31d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Booking_Vinpearl.HomeVC.initData(datas: Swift.Array&lt;Booking_Vinpearl.Hotel&gt;) -&gt; ()"
+                  symbolName = "Booking_Vinpearl.ServiceController.booking(bookingInfo: Booking_Vinpearl.BookingHotel, completion: (Swift.Optional&lt;Booking_Vinpearl.ResponseBooking&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Booking Vinpearl"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Documents/TechMaster/BookingVP/BookingVP/HomeVC.swift"
+                  urlString = "file:///Users/mac/Documents/TechMaster/BookingVP/BookingVP/Service/ServiceController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "253">
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "2371">
                </Location>
                <Location
-                  uuid = "CB834358-B2EE-424E-A2BF-2FB40AE3FC92 - 2b58fa4ace27a9f6"
+                  uuid = "721A8E0B-AF33-4E77-9C4C-FB10C8777D61 - 98f36c950ca607f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Int, Booking_Vinpearl.Hotel, Booking_Vinpearl.HotelCell) -&gt; () in Booking_Vinpearl.HomeVC.initData(datas: Swift.Array&lt;Booking_Vinpearl.Hotel&gt;) -&gt; ()"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in Booking_Vinpearl.ServiceController.booking(bookingInfo: Booking_Vinpearl.BookingHotel, completion: (Swift.Optional&lt;Booking_Vinpearl.ResponseBooking&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Booking Vinpearl"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Documents/TechMaster/BookingVP/BookingVP/HomeVC.swift"
+                  urlString = "file:///Users/mac/Documents/TechMaster/BookingVP/BookingVP/Service/ServiceController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "46">
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "174">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "85EDEC6F-B676-442D-9874-A5C99368BA58"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookingVP/Service/ServiceController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "booking(bookingInfo:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

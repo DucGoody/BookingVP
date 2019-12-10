@@ -24,6 +24,9 @@ struct Hotel: Mappable {
     var phone: String = ""
     var email: String = ""
     var hotelDetail: String = ""
+    var vipprice: String = ""
+    var vVipprice: String = ""
+    var deluxeVipprice: String = ""
     
     init?(map: Map) {
         mapping(map: map)
@@ -35,18 +38,21 @@ struct Hotel: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        hotelId <- map["Hotel_id"]
-        hotelName <- map["Hotel_name"]
-        cityId <- map["City_id"]
+        hotelId <- map["Hotelid"]
+        hotelName <- map["Hotelname"]
+        cityId <- map["Cityid"]
         address <- map["Address"]
         lat <- map["Lat"]
-        lon <- map["Long"]
+        lon <- map["Longi"]
         images <- map["Images"]
         restaurant <- map["Restaurant"]
         events <- map["Events"]
         entertainment <- map["Entertainment"]
         phone <- map["Phone"]
         email <- map["Email"]
-        hotelDetail <- map["Hotel_detail"]
+        hotelDetail <- map["Hoteldetail"]
+        vipprice <- map["Vipprice"]
+        vVipprice <- map["Vvipprice"]
+        deluxeVipprice <- map["Deluxevipprice"]
     }
 }

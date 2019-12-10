@@ -18,7 +18,7 @@ struct City: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        CityID <- map["City_id"]
-        CityName <- map["City_name"]
+        CityID <- map["Cityid"]
+        CityName <- map["Cityname"]
     } 
 }

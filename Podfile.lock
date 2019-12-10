@@ -3,6 +3,7 @@ PODS:
   - Differentiator (4.0.1)
   - JTAppleCalendar (7.1.7)
   - JTCalendar (2.2.5)
+  - Kingfisher (4.10.1)
   - ObjectMapper (3.5.1)
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.5)
   - JTAppleCalendar
   - JTCalendar
+  - Kingfisher
   - ObjectMapper
   - RxCocoa (~> 5)
   - RxDataSources
@@ -38,6 +40,7 @@ SPEC REPOS:
     - Differentiator
     - JTAppleCalendar
     - JTCalendar
+    - Kingfisher
     - ObjectMapper
     - RxCocoa
     - RxDataSources
@@ -52,6 +55,7 @@ SPEC CHECKSUMS:
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
   JTCalendar: 4056fd48735e1148b487acad35d72faea2387b25
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
@@ -61,6 +65,6 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 9166a896887122cc1ac378b03adcc8b950d30583
+PODFILE CHECKSUM: bb0b09d8e86d1c28d64d1b9a7d1cbcd6c72b78ae
 
 COCOAPODS: 1.8.3

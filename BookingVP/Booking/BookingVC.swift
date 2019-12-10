@@ -26,7 +26,7 @@ class BookingVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dateDefault = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
-        self.booking = BookingHotel.init(startDate: dateDefault, endDate: dateDefault, roomQuantity: 1, roomType: RoomTypeEnum.normal.rawValue)
+        self.booking = BookingHotel.init(startDate: dateDefault, endDate: dateDefault, roomQuantity: 1, roomType: RoomTypeEnum.vip.rawValue)
         self.initUI()
     }
     
@@ -118,7 +118,7 @@ class BookingVC: BaseViewController {
             }
             
             cell.onChangeTextField = { [unowned self] string, row in
-                self.onChangeTextField(text: string,row: row)
+                self.onChangeTextField(text: string ?? "",row: row)
             }
             if row == 0 {
                 cell.tfInput.text = self.booking.bookingName
@@ -140,22 +140,22 @@ class BookingVC: BaseViewController {
         }
     }
     
-    func onChangeTextField(text: String?,row: Int) {
+    func onChangeTextField(text: String,row: Int) {
         if row == 0 {
             self.booking.bookingName = text
         } else if row == 1 {
             self.booking.bookingPhone = text
         } else {
-            self.booking.roomQuantity = Int(text ?? "") ?? 1
+            self.booking.roomQuantity = Int(text) ?? 1
         }
     }
     
     func onSelectPopup() {
         let indexPath = IndexPath.init(row: 4, section: 0)
         guard let cell = tableView.cellForRow(at: indexPath), let cell2 = cell as? RoomTypeCell else { return }
-        let vc = PopupFilterVC.init(viewInput: cell2, datas: itemsPopup, tagItemSelected: self.booking.roomType, isRoomType: true)
+        let vc = PopupFilterViewController.init(inputTodoView: cell2, datas: itemsPopup, tagItemSelected: self.booking.roomType, isRoomType: true)
         vc.modalPresentationStyle = .overCurrentContext
-        vc.onSelectItemFilter = { [unowned self] (value) in
+        vc.onSelectedItem = { [unowned self] (value) in
             self.booking.roomType = value.tag
             self.tableView.reloadData()
         }
@@ -166,16 +166,16 @@ class BookingVC: BaseViewController {
     func onSelectTime(_ isStart: Bool) {
         var startDate: Date = self.dateDefault
         var endDate: Date = self.dateDefault
-        if let startDateBooking = self.booking.startDate {
-            startDate = startDateBooking
-        }
+//        if let startDateBooking = self.booking.startDate {
+//            startDate = startDateBooking
+//        }
         
-        if let endDateBooking = self.booking.endDate {
-            endDate = endDateBooking
-        }
+//        if let endDateBooking = self.booking.endDate {
+//            endDate = endDateBooking
+//        }
         
         let dateInput: Date = isStart ? startDate : endDate
-        let vc = PopupSelectTimeVC.init(dateSelect: dateInput)
+        let vc = PopupSelectTimeViewController.init(dateSelected: dateInput)
         
         vc.modalPresentationStyle = .overCurrentContext
         vc.onSelectDate = { [unowned self] date in

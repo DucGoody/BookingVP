@@ -15,16 +15,15 @@ class HomeVC: BaseViewController {
     @IBOutlet weak var vAddress: UIView!
     @IBOutlet weak var lbAddress: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var ivNoti: UIImageView!
     
     //contraint
     @IBOutlet weak var cstHeightViewSafeArea: NSLayoutConstraint!
     
     //biến
-    let hotelCell = "HotelCell"
-    var itemFilterSelected: EntityPopup!
+    private let hotelCell = "HotelCell"
+    private var itemFilterSelected: EntityPopup!
     var cities: [City] = []
-    var itemsPopup: [EntityPopup] = []
+    private var itemsPopup: [EntityPopup] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +35,7 @@ class HomeVC: BaseViewController {
     
     //config UI
     func initUI() {
+        
         tableView.register(UINib.init(nibName: hotelCell, bundle: nil), forCellReuseIdentifier: hotelCell)
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 16, right: 0)
         tableView.separatorColor = UIColor.clear
@@ -44,10 +44,6 @@ class HomeVC: BaseViewController {
         vAddress.layer.borderColor = UIColor.lightGray.cgColor
         vAddress.layer.borderWidth = 0.5
         lbAddress.textColor = UIColor.textMain
-        
-        let tapNoti = UITapGestureRecognizer.init(target: self, action: #selector(gotoNotificationVC))
-        ivNoti.isUserInteractionEnabled = true
-        ivNoti.addGestureRecognizer(tapNoti)
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,20 +56,18 @@ class HomeVC: BaseViewController {
         if !self.isCheckInternet() {
             return
         }
-        self.showLoading(true)
-        ServiceController().getHotelByCity(city: self.itemFilterSelected) { (hotels) in
-            self.showLoading(false)
+        self.showLoadingView(true)
+        ServiceController().getHotelsByCity(keyFilter: self.itemFilterSelected.tag) { (hotels) in
+            self.showLoadingView(false)
             if let hotels = hotels { // có dữ liệu
                 self.initData(datas: hotels)
-            } else {
-                let datas = [Hotel.init(hotelName: "Vinpearl Resort Nha Trang", address: "Đảo Hòn Tre, Nha Trang, Khánh Hòa Việt Nam")]
-                self.initData(datas: datas)
             }
         }
     }
     
     // xử lý bin data to cell
     func initData(datas: [Hotel]) {
+        tableView.dataSource = nil
         Observable.just(datas).bind(to: tableView.rx.items(cellIdentifier: hotelCell, cellType: HotelCell.self)) {
             (row, item, cell) in
             cell.binData(hotel: item)
@@ -89,13 +83,16 @@ class HomeVC: BaseViewController {
     
     //action chọn chuyển tới chi tiết hotel
     func onSelectItemHotel(hotel: Hotel) {
-        let vc = DetailHotelVC()
+        let vc = DetailViewController()
         vc.hotel = hotel
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    //chuyển sang màn hình thông báo
-    @objc func gotoNotificationVC() {
+    @IBAction func actionShowInfoUser(_ sender: Any) {
+        
+    }
+    
+    @IBAction func actionGotoNotifications(_ sender: Any) {
         let vc = NotificationsVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -108,6 +105,7 @@ class HomeVC: BaseViewController {
             // xử lý chọn địa điểm xong
             self.itemFilterSelected = value
             self.lbAddress.text = value.name
+            self.loadData()
         }
         self.present(vc, animated: false)
     }
@@ -138,18 +136,5 @@ class HomeVC: BaseViewController {
         
         // mặc định giá trị chọn là item[0]
         itemFilterSelected = itemsPopup[0]
-    }
-}
-
-
-class Hotel2: NSObject {
-    var hotelId: String = ""
-    var name: String = ""
-    var image: String = ""
-    
-    init(hotelId: String, name: String, image: String) {
-        self.hotelId = hotelId
-        self.name = name
-        self.image = image
     }
 }

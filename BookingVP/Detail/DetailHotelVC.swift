@@ -19,27 +19,21 @@ class DetailHotelVC: BaseViewController, UITableViewDelegate {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var ivBackNav: UIImageView!
-    let imageCollectionCell = "ImageCollectionCell"
     
-    let headerDetailView = "HeaderDetailView"
-    let emptyTableViewCell = "EmptyTableViewCell"
-    let descriptionHotelCell = "DescriptionHotelCell"
-    let nameCell = "NameCell"
-    var isResumeTimer: Bool = false
-    var timer: Timer!
-    var dataSource: RxTableViewSectionedReloadDataSource<SectionTableViewCell>!
-    
-    //fech data
-    let sections = [
-        SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "", isCollapse: false), items: [EntityTableViewCell.init(name: "", description: ""), EntityTableViewCell.init(name: "", description: "Tọa lạc tại vị trí đắc địa ngay trong khuôn viên Vinhomes Imperia, Vinpearl Hotel Rivera Hải Phòng là tòa khách sạn 5 sao mang dáng vẻ thanh lịch và sang trọng. Hơi thở trữ tình và cổ điển của những công trình phong cách Pháp trên đất Cảng giao hòa với vẻ đẹp thời đại năng động và ấn tượng, được cảm nhận rõ nét qua lối kiến trúc tân cổ điển tinh mỹ.")]),
-    SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Nhà hàng & Bar", isCollapse: true), items: [EntityTableViewCell.init(name: "", description: "Với bàn tay chế biến của những đầu bếp tài hoa và sự phục vụ chuyên nghiệp của đội ngũ nhân viên, du khách không chỉ được thưởng thức tinh hoa ẩm thực Việt Nam và quốc tế được bài trí đặc sắc mà còn được dịp ấn tượng bởi dịch vụ tận tâm và không gian sang trọng.")]),
-    SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Hội họp & Sự kiện", isCollapse: true), items: [EntityTableViewCell.init(name: "", description: "Với hệ thống phòng họp tối tân và đội ngũ chuyên gia đầy nhiệt huyết, Vinpearl Hotel Rivera Hải Phòng là lựa chọn hoàn hảo cho các chương trình hội nghị lớn nhỏ, các sự kiện đón tiếp, chiêu đãi khách VIP, gặp gỡ đối tác quan trọng.")]),
-    SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Giải trí", isCollapse: true), items: [EntityTableViewCell.init(name: "", description: "Các dịch vụ khách sạn đẳng cấp như Vincharm Spa, trung tâm thể hình, bể bơi ngoài trời... cộng hưởng với các tiện ích nội khu hiện đại của Vinhomes Imperia Hải Phòng đem đến những trải nghiệm lưu trú trọn vẹn nhất cho khách hàng.")]),
-    SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Liên hệ", isCollapse: true), items: [EntityTableViewCell.init(name: "", description: "- Địa chỉ: Tòa nhà A - Văn phòng Vingroup Số 7, đường Bằng Lăng, Vinhomes Riverside Long Biên, Hà Nội, Việt Nam \n- Email: callcenter@vinpearl.com \n- Số điện thoại: (+84) 1900 636 699 - (+84) 243 974 9999")])]
+    private let imageCollectionCell = "ImageCollectionCell"
+    private let headerDetailView = "HeaderDetailView"
+    private let emptyTableViewCell = "EmptyTableViewCell"
+    private let descriptionHotelCell = "DescriptionHotelCell"
+    private let nameCell = "NameCell"
+    private var isResumeTimer: Bool = false
+    private var timer: Timer!
+    private var dataSource: RxTableViewSectionedReloadDataSource<SectionTableViewCell>!
+    private var sections: [SectionTableViewCell] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isShowNavigationBar = false
+        self.initData()
         configUI()
         loadImageCover()
         configTableView()
@@ -50,6 +44,17 @@ class DetailHotelVC: BaseViewController, UITableViewDelegate {
         if isResumeTimer {
 
         }
+    }
+    
+    func initData() {
+        let descriptionContact = "- Địa chỉ: \(self.hotel.address) \n- Email: \(self.hotel.email) \n- Số điện thoại: \(self.hotel.phone)"
+        sections = [
+            SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "", isCollapse: false), items: [EntityTableViewCell.init(name: "", description: ""), EntityTableViewCell.init(name: "", description: self.hotel.hotelDetail)]),
+            SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Nhà hàng & Bar", isCollapse: false), items: [EntityTableViewCell.init(name: "", description: self.hotel.restaurant)]),
+            SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Hội họp & Sự kiện", isCollapse: false), items: [EntityTableViewCell.init(name: "", description: self.hotel.events)]),
+            SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Giải trí", isCollapse: false), items: [EntityTableViewCell.init(name: "", description: self.hotel.entertainment)]),
+            SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Liên hệ", isCollapse: false), items: [EntityTableViewCell.init(name: "", description: descriptionContact)])
+        ]
     }
     
     func configUI() {
@@ -155,6 +160,7 @@ class DetailHotelVC: BaseViewController, UITableViewDelegate {
     
     func getNameCell(indexPath: IndexPath, item: EntityTableViewCell, tableView: UITableView) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.nameCell) as? NameCell {
+            cell.binData(hotel: self.hotel)
             return cell
         }
         return UITableViewCell()
@@ -277,7 +283,6 @@ extension DetailHotelVC: UICollectionViewDelegateFlowLayout {
     }
     
     @objc func startTimer() {
-        
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(scrollToNextCell), userInfo: nil, repeats: false)
     }
     
@@ -287,36 +292,36 @@ extension DetailHotelVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
-class EntityTableViewCell {
-  var name: String = ""
-  var description: String = ""
-    
-    init(name: String, description: String) {
-        self.name = name
-        self.description = description
-    }
-}
-
-class EntityHeaderTableView {
-    var headerName: String = ""
-    var isCollapse: Bool = true
-    
-    init(headerName: String, isCollapse: Bool) {
-        self.headerName = headerName
-        self.isCollapse = isCollapse
-    }
-}
-
-struct SectionTableViewCell {
-    var header: EntityHeaderTableView
-    var items: [Item]
-}
-
-extension SectionTableViewCell: SectionModelType {
-    typealias Item = EntityTableViewCell
-    
-    init(original: SectionTableViewCell, items: [Item]) {
-       self = original
-       self.items = items
-     }
-}
+//class EntityTableViewCell {
+//  var name: String = ""
+//  var description: String = ""
+//
+//    init(name: String, description: String) {
+//        self.name = name
+//        self.description = description
+//    }
+//}
+//
+//class EntityHeaderTableView {
+//    var headerName: String = ""
+//    var isCollapse: Bool = true
+//
+//    init(headerName: String, isCollapse: Bool) {
+//        self.headerName = headerName
+//        self.isCollapse = isCollapse
+//    }
+//}
+//
+//struct SectionTableViewCell {
+//    var header: EntityHeaderTableView
+//    var items: [Item]
+//}
+//
+//extension SectionTableViewCell: SectionModelType {
+//    typealias Item = EntityTableViewCell
+//
+//    init(original: SectionTableViewCell, items: [Item]) {
+//       self = original
+//       self.items = items
+//     }
+//}

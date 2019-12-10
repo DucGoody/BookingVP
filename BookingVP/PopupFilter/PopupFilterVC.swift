@@ -22,14 +22,7 @@ class PopupFilterVC: BaseViewController {
     @IBOutlet weak var viewControl: UIControl!
     var onSelectItemFilter: ((EntityPopup) -> (Void))?
     
-    init(viewInput: UIView, datas: [EntityPopup], tagItemSelected: Int) {
-        super.init(nibName: "PopupFilterVC", bundle: nil)
-        self.viewInput = viewInput
-        self.datas = datas
-        self.tagItemSelected = tagItemSelected
-    }
-    
-    init(viewInput: UIView, datas: [EntityPopup], tagItemSelected: Int, isRoomType: Bool) {
+    init(viewInput: UIView, datas: [EntityPopup], tagItemSelected: Int, isRoomType: Bool = false) {
         super.init(nibName: "PopupFilterVC", bundle: nil)
         self.viewInput = viewInput
         self.datas = datas

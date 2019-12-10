@@ -16,7 +16,6 @@ class HeaderDetailView: UITableViewHeaderFooterView {
     @IBOutlet weak var ivExpand: UIImageView!
     var onCollapse: ((Bool) -> Void)?
     var isCollapse: Bool = false
-//    var onUpdateTableView: (() -> Void)?
     var imageX: UIImage?
     var imageY: UIImage?
     
@@ -32,17 +31,13 @@ class HeaderDetailView: UITableViewHeaderFooterView {
         imageY = imageY?.imageWithColor(color1: UIColor.init(hexString: "cccccc"))
         imageY = imageY?.rotate(radians: Float(-CGFloat.pi/2))
         
-        self.ivExpand.image = imageX
+        self.ivExpand.image = imageY
     }
     
     func expandOrCollapse(_ isCollage: Bool) {
         isCollapse = isCollage
         let image = isCollage ? imageX : imageY
         self.ivExpand.image = image
-//        UIView.animate(withDuration: 1) {
-//
-//            self.onUpdateTableView?()
-//        }
     }
     
     @IBAction func onClickExpand(_ sender: Any) {
