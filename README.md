@@ -1,5 +1,5 @@
 # BookingVP
-I. Đồ án techmaster: Booking Vinpearl - VinID
+I. Đồ án techmaster: Booking Vinpearl - 
 
 - Alamofire, ObjectMapper, Snapkit, RxSwift
 
