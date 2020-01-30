@@ -145,7 +145,7 @@ class DetailViewController: BaseViewController {
         let bookingViewController = BookingViewController()
         bookingViewController.hotel = self.hotel
         bookingViewController.homeViewController = self.homeViewController
-        self.navigationController?.pushViewController(bookingViewController, animated: true)
+        navigationController?.pushViewController(bookingViewController, animated: true)
     }
 }
 
