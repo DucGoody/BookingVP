@@ -29,9 +29,9 @@ class DetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.isShowNavigationBar = false
-        self.initData()
-        self.initUI()
+        isShowNavigationBar = false
+        initData()
+        initUI()
     }
     
     func initData() {
