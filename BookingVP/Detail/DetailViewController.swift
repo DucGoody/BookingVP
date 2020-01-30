@@ -138,7 +138,7 @@ class DetailViewController: BaseViewController {
     }
     
     @objc func onBackNav() {
-        self.navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func actionBooking(_ sender: Any) {
