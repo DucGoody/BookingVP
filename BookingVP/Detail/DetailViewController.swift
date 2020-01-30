@@ -35,7 +35,7 @@ class DetailViewController: BaseViewController {
     }
     
     func initData() {
-        let descriptionContact = "- Địa chỉ: \(self.hotel.address) \n- Email: \(self.hotel.email) \n- Số điện thoại: \(self.hotel.phone)"
+        let descriptionContact = "- Địa chỉ: \(hotel.address) \n- Email: \(self.hotel.email) \n- Số điện thoại: \(self.hotel.phone)"
         sections = [
             SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "", isCollapse: false), items: [EntityTableViewCell.init(name: "", description: ""), EntityTableViewCell.init(name: "", description: self.hotel.hotelDetail)]),
             SectionTableViewCell(header: EntityHeaderTableView.init(headerName: "Nhà hàng & Bar", isCollapse: false), items: [EntityTableViewCell.init(name: "", description: self.hotel.restaurant)]),
