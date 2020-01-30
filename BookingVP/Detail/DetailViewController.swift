@@ -25,7 +25,7 @@ class DetailViewController: BaseViewController {
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionTableViewCell>!
     private var sections: [SectionTableViewCell] = []
     var hotel: Hotel!
-    var homeViewController: HomeViewController?
+    private var homeViewController: HomeViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
