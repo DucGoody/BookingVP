@@ -53,7 +53,7 @@ class DetailViewController: BaseViewController {
         backImageView.addGestureRecognizer(tapImg)
         backImageView.dropShadow()
         
-        if !self.hotel.images.isEmpty && self.hotel.images.count > 0 {
+        if !self.hotel.images.isEmpty && hotel.images.count > 0 {
             self.coverImageView.setImage(self.hotel.images)
         }
         
